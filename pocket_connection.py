@@ -54,7 +54,7 @@ def generate_access_token(request_token):
     return access_token
 
 
-def get_pocket_list(discord_id, count: int = 15, favorite: bool = None, state: str = 'all'):
+def get_pocket_list(discord_id, count, favorite, state):
     pocket_user = db_connection.get_user(str(discord_id))
 
     pocket_list_url = 'https://getpocket.com/v3/get'
@@ -69,9 +69,9 @@ def get_pocket_list(discord_id, count: int = 15, favorite: bool = None, state: s
               "state": state,
               }
     if favorite == True:
-        params.update({'favorite': 1})
+        params.update({"favorite": 1})
     elif favorite == False:
-        params.update({'favorite': 0})
+        params.update({"favorite": 0})
 
     response = requests.post(url=pocket_list_url, json=params, headers=headers)
     raw_response_json = json.loads(response.text)
