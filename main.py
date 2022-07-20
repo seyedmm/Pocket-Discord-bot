@@ -7,6 +7,8 @@ import json
 import os
 
 bot = discord.Bot()
+TOKEN = os.environ.get("DISCORD_TOKEN")
+CONSUMER_KEY = os.environ.get("CONSUMER_KEY")
 
 
 @bot.event
