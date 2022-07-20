@@ -5,7 +5,9 @@ import db_connection
 import pocket_connection
 import json
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 bot = discord.Bot()
 TOKEN = os.getenv("DISCORD_TOKEN")
 CONSUMER_KEY = os.getenv("CONSUMER_KEY")
