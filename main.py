@@ -18,6 +18,7 @@ async def on_ready():
     print(f'Bot started.\n{bot.user.name}\n{bot.user.id}\n------------------------')
 
 
+@discord.guild_only()
 @bot.slash_command(name='register')
 async def pocket_list(ctx):
     user_dm = await ctx.author.create_dm()
