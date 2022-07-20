@@ -7,8 +7,8 @@ import json
 import os
 
 bot = discord.Bot()
-TOKEN = os.environ.get("DISCORD_TOKEN")
-CONSUMER_KEY = os.environ.get("CONSUMER_KEY")
+TOKEN = os.getenv("DISCORD_TOKEN")
+CONSUMER_KEY = os.getenv("CONSUMER_KEY")
 
 
 @bot.event
@@ -50,4 +50,4 @@ async def pocket_list(ctx):
         await ctx.respond('You are already registered')
 
 
-bot.run(os.environ.get('DISCORD_TOKEN'))
+bot.run(TOKEN)
