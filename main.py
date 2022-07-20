@@ -15,7 +15,7 @@ CONSUMER_KEY = os.getenv("CONSUMER_KEY")
 
 @bot.event
 async def on_ready():
-    print('Sfg')
+    print(f'Bot started.\n{bot.user.name}\n{bot.user.id}\n------------------------')
 
 
 @bot.slash_command(name='register')
