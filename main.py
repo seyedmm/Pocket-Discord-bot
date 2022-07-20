@@ -4,6 +4,7 @@ from discord.ui import View, Button
 import db_connection
 import pocket_connection
 import json
+import os
 
 bot = discord.Bot()
 
@@ -47,4 +48,4 @@ async def pocket_list(ctx):
         await ctx.respond('You are already registered')
 
 
-bot.run('ODc5MDkzMzgxMDM1MzI3NTI5.GJGjhO.CnXcXxjAQU6_bGNL2F6Isj3rSiDbOrClJe7hvc')
+bot.run(os.environ.get('DISCORD_TOKEN'))
