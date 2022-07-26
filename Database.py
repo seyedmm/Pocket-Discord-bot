@@ -8,6 +8,7 @@ def setup():
         'users', meta,
         Column('discord_id', String, primary_key=True),
         Column('access_token', String),
+        Column('pocket_username', String),
     )
     meta.create_all(sqlite_engine)
     connection = sqlite_engine.connect()
@@ -17,8 +18,9 @@ def setup():
 engine, users, conn = setup()
 
 
-def add_user(discord_id, access_token):
-    insert_user = users.insert().values(discord_id=str(discord_id), access_token=str(access_token))
+def add_user(discord_id, access_token, pocket_username):
+    insert_user = users.insert().values(discord_id=str(
+        discord_id), access_token=str(access_token), pocket_username=str(pocket_username))
     result = conn.execute(insert_user)
 
 

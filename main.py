@@ -1,17 +1,26 @@
+from ast import Param
+import discord
 import discord
 from discord import ButtonStyle
 from discord.ui import View, Button
-import db_connection
-import pocket_connection
+import Database
+from Pocket import Pocket as PocketClient 
 import json
 import os
 from dotenv import load_dotenv
+from Server import app
+from GunicornServer import StandaloneApplication
+import threading
+
+server = StandaloneApplication(app,{"bind":f"0.0.0.0:{os.getenv('PORT')}"})
+
+Pocket = PocketClient()
+
 
 load_dotenv()
 bot = discord.Bot()
 TOKEN = os.getenv("DISCORD_TOKEN")
-CONSUMER_KEY = os.getenv("CONSUMER_KEY")
-
+t = threading.Thread(target=bot.run, args=(TOKEN,))
 
 @bot.event
 async def on_ready():
@@ -22,35 +31,17 @@ async def on_ready():
 @bot.slash_command(name='register')
 async def pocket_list(ctx):
     user_dm = await ctx.author.create_dm()
-    if not db_connection.is_in_db(ctx.author.id):
-        pocket_req_token = pocket_connection.generate_request_token()
-        pocket_authorize_url = pocket_connection.generate_authorize_url(pocket_req_token)
-
-        async def done_btn_callback(interaction: discord.Interaction):
-            pocket_access_token_query = pocket_connection.generate_access_token(request_token=pocket_req_token)
-            try:
-                pocket_access_token = json.loads(pocket_access_token_query)['access_token']
-            except json.decoder.JSONDecodeError:
-                await user_dm.send('Registration failed.\nYou did not grant access to the bot.')
-            else:
-                db_connection.add_user(ctx.author.id, pocket_access_token)
-                await user_dm.send('You have successfully registered')
-            finally:
-                await interaction.message.delete()
-
-        done_btn = Button(style=ButtonStyle.success, label='Done', emoji=bot.get_emoji(999004472653119619))
-        done_btn.callback = done_btn_callback
-
-        view = View()
-        view.add_item(done_btn)
-
+    if not Database.is_in_db(ctx.author.id):
+        redirect_uri = f'{os.getenv("MAIN_URL")}/authentication/{ctx.author.id}'
+        pocket_req_token = Pocket.get_request_token(redirect_uri)
+        pocket_authorize_url = Pocket.generate_authorize_url(pocket_req_token,redirect_uri)
         await user_dm.send(
             'Open the link below and click Authorize\n{}\nThen click the Done button below this message'.format(
-                pocket_authorize_url), view=view)
-        await ctx.respond(f'||<@{ctx.author.id}>||\nCheck your DM')
+                pocket_authorize_url))
 
     else:
         await ctx.respond('You are already registered')
+t.start()
+app.run()
 
 
-bot.run(TOKEN)

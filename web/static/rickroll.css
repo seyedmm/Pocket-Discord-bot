@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+SA+Beginner&display=swap');
+*{
+  font-family: 'Edu SA Beginner', cursive;
+}
+@keyframes rickroll {
+  0%, 10% {
+    opacity: 0;
+  }
+  15%, 100% {
+    opacity: 1;
+  }
+}
+@keyframes showing-up {
+  from {opacity: 0;}
+  to {opacity: 1;}
+  
+}
+@keyframes vanishing{
+  /* 0%{
+    opacity: 1;
+  }
+  25%{
+    opacity: 0.75;
+    transform: rotateX(22.5deg);
+  }
+  50%{
+    opacity: 0.5;
+    transform: rotateX(45deg);
+  }
+  75%{
+    opacity: 0.5;
+    transform: rotateX(67.5deg);
+  }
+  100%{
+    display: none;
+    opacity: 0;
+    transform: rotateX(90deg);
+  } */
+  from { opacity:1; }
+  to {
+    opacity: 0;
+    display: none;
+  }
+}
+
+body{
+  background-color: #FFFDD0;
+  display:flex; 
+  justify-content:center;
+  align-items:center;
+  height:90vh;
+}
+#main{
+  display:flex; 
+  justify-content:center;
+  align-items:center;
+  width: 70%;
+  min-height: 65%;
+  border-radius:15px;
+  background-color: aqua;
+  box-shadow: -12px 12px 21px -8px rgba(0,0,0,0.75);
+  -webkit-box-shadow: -12px 12px 21px -8px rgba(0,0,0,0.75);
+  -moz-box-shadow: -12px 12px 21px -8px rgba(0,0,0,0.75);
+  padding-top: 15px;
+  padding-bottom: 15px;
+  flex-direction: column;
+}
+
+#ricky{
+  border-radius: 7px;
+  height: 255px;
+  box-shadow: -14px 9px 14px -4px #df1010b5;
+  -webkit-box-shadow: -14px 9px 14px -4px #df1010b5;
+  -moz-box-shadow:-14px 9px 14px -4px #df1010b5;
+  animation:showing-up 2s;
+}
+
+#rick-wraper{
+  height: 65%;
+}
+
+#rickroll{
+  animation:showing-up 2s;
+}
