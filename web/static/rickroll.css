@@ -1,7 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Edu+SA+Beginner&display=swap');
-*{
-  font-family: 'Edu SA Beginner', cursive;
-}
+
 @keyframes rickroll {
   0%, 10% {
     opacity: 0;
@@ -43,28 +40,6 @@
   }
 }
 
-body{
-  background-color: #FFFDD0;
-  display:flex; 
-  justify-content:center;
-  align-items:center;
-  height:90vh;
-}
-#main{
-  display:flex; 
-  justify-content:center;
-  align-items:center;
-  width: 70%;
-  min-height: 65%;
-  border-radius:15px;
-  background-color: aqua;
-  box-shadow: -12px 12px 21px -8px rgba(0,0,0,0.75);
-  -webkit-box-shadow: -12px 12px 21px -8px rgba(0,0,0,0.75);
-  -moz-box-shadow: -12px 12px 21px -8px rgba(0,0,0,0.75);
-  padding-top: 15px;
-  padding-bottom: 15px;
-  flex-direction: column;
-}
 
 #ricky{
   border-radius: 7px;
