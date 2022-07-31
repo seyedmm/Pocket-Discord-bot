@@ -1,3 +1,4 @@
+from tkinter.messagebox import NO
 import requests
 import os
 from dotenv import load_dotenv
@@ -50,8 +51,10 @@ class Pocket():
                 "detailType": "complete",
                 "sort": "newest",
                 "state": state,
-                "favorite": str(favorite),
                 }
+        
+        if favorite is not None:
+            self.params["favorite"] = str(favorite)
 
         response = requests.post(
             url=self.endpoint, json=self.params, headers=self.headers)
