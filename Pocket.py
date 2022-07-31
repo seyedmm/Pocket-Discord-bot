@@ -1,4 +1,3 @@
-from tkinter.messagebox import NO
 import requests
 import os
 from dotenv import load_dotenv
