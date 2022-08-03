@@ -1,0 +1,15 @@
+{% extends "main.html" %}
+{% block header %}
+<link rel="stylesheet" href="{{ url_for('static', filename='rickroll.css') }}">
+<script src="{{ url_for('static', filename='rickroll.js') }}"></script>
+{% endblock %}
+{% block title %}
+<title> Consider this as 404 </title>
+{% endblock %}
+{% block content %}
+<div id="rick-wraper"></div>
+    <h2 id="text"> 
+      Even before you know it...
+      <br>Even before you feel it...
+      <br>You've got rickrolled. </h1>
+{% endblock %}

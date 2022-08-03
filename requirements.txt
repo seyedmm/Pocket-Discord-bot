@@ -1,0 +1,6 @@
+py-cord
+python-dotenv
+flask
+gunicorn
+sqlalchemy
+requests
